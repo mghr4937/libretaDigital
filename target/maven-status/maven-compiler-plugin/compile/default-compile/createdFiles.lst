@@ -1,8 +1,0 @@
-com\libretaDigital\controller\libretaDigitalController.class
-com\libretaDigital\util\HibernateUtil.class
-com\libretaDigital\dao\UserDAOImpl.class
-com\libretaDigital\controller\UserController.class
-com\libretaDigital\dao\UserDAO.class
-com\libretaDigital\services\UserService.class
-com\libretaDigital\model\User.class
-com\libretaDigital\services\UserServiceImpl.class
