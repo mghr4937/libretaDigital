@@ -5,8 +5,8 @@
 	xmlns:context="http://www.springframework.org/schema/context"
 	xmlns:util="http://www.springframework.org/schema/util"
 	xsi:schemaLocation="http://www.springframework.org/schema/integration/ws http://www.springframework.org/schema/integration/ws/spring-integration-ws-2.0.xsd
-		http://www.springframework.org/schema/context http://www.springframework.org/schema/context/spring-context-3.0.xsd
-		http://www.springframework.org/schema/beans http://www.springframework.org/schema/beans/spring-beans-3.0.xsd
+		 http://www.springframework.org/schema/beans http://www.springframework.org/schema/beans/spring-beans-3.1.xsd
+    	 http://www.springframework.org/schema/util  http://www.springframework.org/schema/util/spring-util-3.1.xsd
 		http://jboss.com/products/seam/spring-seam http://jboss.com/products/seam/spring-seam-2.2.xsd">
 	
 	<bean name="genericDAO" class="hibernate.GenericDAO">
@@ -26,7 +26,7 @@
 		<property name="professorService" ref="professorService"/>
 	</bean>
 	
-	<util:list id="libretadigital.mapping.resources">
+	<util:list id="libretaDigital.mapping.resources">
 		<value>hbm/ClassDayProfessor.hbm.xml</value>
 		<value>hbm/ClassDayStudent.hbm.xml</value>
 		<value>hbm/Course.hbm.xml</value>
