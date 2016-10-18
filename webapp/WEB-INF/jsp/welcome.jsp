@@ -1,14 +1,22 @@
+<%@page import="org.codehaus.jackson.map.ObjectMapper"%>
 <jsp:include page="/WEB-INF/jsp/header.jsp" />
 
 <%
-	
+	ObjectMapper objMapper = new ObjectMapper();
+	Object obj = request.getAttribute("objeto");
+	String jsonString = objMapper.writeValueAsString(obj);
 %>
+<body ng-controller="mainCtrl">
+<script type="text/javascript">
+ var objeto = <%=jsonString%>;
 
-<body>
+
+</script>	
+
 <%-- 	<h4>${mensaje} : ${user}</h4> --%>
 <%--  	<spring:url var="salir" value="/inicializarLogin.html"/> --%>
 <%--  	<a href="${lista}" >Salir</a> --%>
-	<p id="msg">${message}</p>
+	<p id="msg">{{msj}}</p>
 		
 	<br>
 	<div style="font-family: verdana; padding: 10px; border-radius: 10px; font-size: 12px; text-align:center;">
@@ -21,4 +29,4 @@
 	</div>
 	
 </body>
-</html>
+<jsp:include page="/WEB-INF/jsp/footer.jsp" />

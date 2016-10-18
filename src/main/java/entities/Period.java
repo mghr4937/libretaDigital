@@ -1,7 +1,9 @@
 package entities;
 
 import java.util.Date;
+import org.codehaus.jackson.annotate.JsonAutoDetect;
 
+@JsonAutoDetect
 public class Period {
 
 	private Long oid;

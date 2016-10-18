@@ -98,3 +98,4 @@ local.properties
 # Code Recommenders
 .recommenders/
 *.classpath
+*.classpath

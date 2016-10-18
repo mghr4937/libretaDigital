@@ -6,7 +6,9 @@ import java.util.List;
 
 import utils.Gender;
 import utils.Grade;
+import org.codehaus.jackson.annotate.JsonAutoDetect;
 
+@JsonAutoDetect
 public class Professor extends Person {
 	
 	private String password;

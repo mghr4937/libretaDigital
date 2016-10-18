@@ -1,7 +1,9 @@
 package entities;
 
 import java.util.List;
+import org.codehaus.jackson.annotate.JsonAutoDetect;
 
+@JsonAutoDetect
 public class Group {
 
 	private Long oid;
