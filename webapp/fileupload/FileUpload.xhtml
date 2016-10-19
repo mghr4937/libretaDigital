@@ -1,0 +1,105 @@
+<!DOCTYPE composition PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN"
+    "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<ui:composition xmlns="http://www.w3.org/1999/xhtml"
+	xmlns:s="http://jboss.com/products/seam/taglib"
+	xmlns:ui="http://java.sun.com/jsf/facelets"
+	xmlns:f="http://java.sun.com/jsf/core"
+	xmlns:h="http://java.sun.com/jsf/html"
+	xmlns:a="http://richfaces.org/a4j"
+	xmlns:rich="http://richfaces.org/rich">
+
+	<ui:define name="body">
+
+		<h:form id="uploadFileForm" styleClass="edit">
+		
+			<rich:panel style="margin-top:15px;">
+				<f:facet name="header">Tipo de carga</f:facet>
+				<h:selectOneMenu value="#{FileUploadHome.selectedFileType}">
+					<s:selectItems value="#{fileUploadUtils.fileUploadTypeList}"
+						var="fut" label="#{fut.value}" itemValue="#{fut}" />
+				</h:selectOneMenu>
+			</rich:panel>
+		
+			<rich:panel style="margin-top:15px;">
+				<f:facet name="header">Carga de archivos</f:facet>
+				
+				<h:panelGrid columns="2">
+					<h:panelGrid columns="1">
+						<rich:fileUpload id="fileUpload"
+							acceptedTypes="#{FileUploadHome.acceptedTypes}"
+							maxFilesQuantity="#{FileUploadHome.uploadsAvailable}"
+							immediateUpload="#{FileUploadHome.autoUpload}"
+							fileUploadListener="#{FileUploadHome.listener}"
+							addControlLabel="Agregar Archivo"
+							cancelEntryControlLabel="Cancelar"
+							uploadControlLabel="Cargar"
+							stopControlLabel="Detener"
+							stopEntryControlLabel="Detener Carga"
+							clearAllControlLabel="Borrar todo" cleanButtonClass="Borrar"
+							clearControlLabel="Borrar"
+							doneLabel="Cargado"
+							progressLabel="Cargando..."
+							sizeErrorLabel="Tama&#241;o de archivo incorrecto"
+							transferErrorLabel="Error en la carga de archivo"
+							allowFlash="#{FileUploadHome.useFlash}" listHeight="80px"
+							listWidth="475px">
+							<a:support event="onadd"
+								action="#{FileUploadHome.cleanMessages()}" />
+							<a:support event="ontyperejected"
+								action="#{FileUploadHome.warnInvalidFileType()}" />
+							<a:support event="onuploadcomplete" reRender="info" />
+							<a:support event="onclean"
+								action="#{FileUploadHome.clearUploadData()}"
+								reRender="fileUpload" />
+						</rich:fileUpload>
+						
+						<h:commandButton id="clrBtt" value="Limpiar contenido"
+							action="#{FileUploadHome.clearPage()}"
+							reRender="fileUpload" >
+						</h:commandButton>
+					</h:panelGrid>
+
+					<h:panelGroup id="info">
+						<rich:panel style="height: 148px">
+							<f:facet name="header">
+								<h:outputText value="Informaci&#243;n de archivos" />
+							</f:facet>
+							<h:outputText value="No hay archivos cargados."
+								rendered="#{FileUploadHome.size==0}" />
+							<br></br>
+							<h:outputText
+								value="#{messages.upload_label_component} #{FileUploadHome.acceptedTypes}"
+								rendered="#{FileUploadHome.size==0}" />
+							<rich:dataGrid columns="1" value="#{FileUploadHome.files}"
+								var="file" rowKeyVar="row" width="200">
+								<h:panelGrid columns="2">
+									<h:outputText value="Nombre:" />
+									<h:outputText value="#{file.fileName}" />
+									<h:outputText value="Tama&#241;o (bytes):" />
+									<h:outputText value="#{file.fileSize}" />
+								</h:panelGrid>
+							</rich:dataGrid>
+							<rich:spacer height="3" />
+							<br />
+							<div align="center" class="actionButtons">
+								<h:commandButton id="cmdAddCouponFile"
+									action="#{FileUploadHome.sendFile()}" value="Ejecutar carga"
+									onclick="javascript:if(!confirm('Esta seguro que quiere realizar este tipo de carga?'))return false; else Richfaces.showModalPanel('loadingModal');"
+									oncomplete="Richfaces.hideModalPanel('loadingModal');"  
+									rendered="#{FileUploadHome.size>0}" />
+
+								<h:commandButton id="cmdCleanFile"
+									action="#{FileUploadHome.clearUploadData()}"
+									reRender="info, fileUpload"
+									value="#{messages.clear_upload_file}"
+									rendered="#{FileUploadHome.size>0}" immediate="true"/>
+							</div>
+						</rich:panel>
+					</h:panelGroup>
+				</h:panelGrid>
+			</rich:panel>
+		</h:form>
+        
+		<ui:include src="../layout/loading.xhtml" />
+	</ui:define>
+</ui:composition>

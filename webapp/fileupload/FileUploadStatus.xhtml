@@ -1,0 +1,123 @@
+<!DOCTYPE composition PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN"
+    "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<ui:composition xmlns="http://www.w3.org/1999/xhtml"
+	xmlns:s="http://jboss.com/products/seam/taglib"
+	xmlns:ui="http://java.sun.com/jsf/facelets"
+	xmlns:f="http://java.sun.com/jsf/core"
+	xmlns:h="http://java.sun.com/jsf/html"
+	xmlns:rich="http://richfaces.org/rich"
+	xmlns:a="http://richfaces.org/a4j"
+	template="../layout/template.xhtml">
+	
+	<ui:define name="leftImgHeader">
+		<img src="../img/tit_administracion_21.jpg" alt="Autorizador" align="left" />
+	</ui:define>
+
+	<ui:define name="body">
+		<a:region>
+	        <h:form>
+	            <a:poll id="poll" interval="40000" enabled="true"
+	                reRender="poll, fileUploadStatus" />
+	        </h:form>
+	    </a:region>
+
+		<h:form id="fileUploadStatus" styleClass="edit">
+
+			<rich:panel>
+				<f:facet name="header">Resumen de carga</f:facet>
+				<div class="results" id="fileUploadStatusResult" style="overflow-x: scroll;">
+	
+					<rich:dataTable id="fileUploadStatus" var="_fileUpload" 
+							value="#{fileUploadStatus.uploadsStatus}">
+						
+						<f:facet name="header">
+							<rich:columnGroup>
+							
+								<rich:column  rowspan="1">
+									<h:outputText value="Archivo" />
+								</rich:column>
+								
+								<rich:column  rowspan="1">
+									<h:outputText value="Estado" />
+								</rich:column>
+								
+								<rich:column  rowspan="1">
+									<h:outputText value="Cant. l&#237;neas" />
+								</rich:column>
+								
+								<rich:column  rowspan="1">
+									<h:outputText value="Usuario" />
+								</rich:column>
+								
+								<rich:column  rowspan="1">
+									<h:outputText value="Fecha inicio" />
+								</rich:column>
+								
+								<rich:column  rowspan="1">
+									<h:outputText value="Fecha aprox. fin" />
+								</rich:column>
+								
+								<rich:column  rowspan="1">
+									<h:outputText value="L&#237;neas importadas" />
+								</rich:column>
+								
+								<rich:column  rowspan="1">
+									<h:outputText value="Cant. errores" />
+								</rich:column>
+								
+								<rich:column  rowspan="1">
+									<h:outputText value="Log" />
+								</rich:column>
+								
+							</rich:columnGroup>
+						</f:facet>
+						
+						<h:column>
+							<h:outputText value="#{_fileUpload.fileName}" styleClass="smallText"/>
+						</h:column>
+						
+						<h:column>
+							<h:outputText value="#{_fileUpload.status}" styleClass="smallText"/>
+						</h:column>
+	
+						<h:column>
+							<h:outputText value="#{_fileUpload.fileLines}" styleClass="smallText"/>
+						</h:column>
+						
+						<h:column>
+							<h:outputText value="#{_fileUpload.userName}" styleClass="smallText"/>
+						</h:column>
+						
+						<h:column>
+							<h:outputText value="#{_fileUpload.startTimestamp}" styleClass="smallText">
+									<f:convertDateTime pattern="dd-MM-yyyy HH:mm" timeZone="#{fileUploadStatus.timeZone}"/>
+							</h:outputText>
+						</h:column>
+						
+						<h:column>
+							<h:outputText value="#{_fileUpload.endTimestamp}" rendered="#{!(_fileUpload.endTimestamp eq '0')}" styleClass="smallText">								
+									<f:convertDateTime pattern="dd-MM-yyyy HH:mm" timeZone="#{fileUploadStatus.timeZone}"/>
+							</h:outputText>
+						</h:column>
+						
+						<h:column>
+							<h:outputText value="#{_fileUpload.processedLines}" styleClass="smallText"/>
+						</h:column>
+						
+						<h:column>
+							<h:outputText value="#{_fileUpload.wrongLinesCounter}" rendered="#{_fileUpload.showFile}" styleClass="smallText"/>
+						</h:column>
+						
+						<h:column>
+							<h:outputLink rendered="#{_fileUpload.showFile}" value="#{_fileUpload.logFileName}" target="_blank" styleClass="smallText">Ver</h:outputLink>
+						</h:column>						
+						
+					</rich:dataTable>
+				</div>
+
+			</rich:panel>
+
+		</h:form>
+
+	</ui:define>
+</ui:composition>
