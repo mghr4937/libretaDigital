@@ -10,6 +10,7 @@ import java.util.MissingResourceException;
 import java.util.ResourceBundle;
 
 import org.apache.log4j.Logger;
+import org.richfaces.application.FacesMessages;
 import org.richfaces.event.UploadEvent;
 import org.richfaces.model.UploadItem;
 

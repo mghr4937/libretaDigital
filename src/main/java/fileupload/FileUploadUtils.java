@@ -12,7 +12,6 @@ import org.jboss.seam.faces.FacesMessages;
 
 import uy.com.geocom.authconsole.ws.FileUploadType;
 import uy.com.geocom.authwebconsole.business.util.LoginUtils;
-
 import uy.com.geocom.authwebconsole.business.util.TranslateUtils;
 
 @Scope(ScopeType.CONVERSATION)
