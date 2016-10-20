@@ -1,3 +1,4 @@
+<<<<<<< HEAD
 <%@ page language="java" contentType="text/html; charset=ISO-8859-1" pageEncoding="ISO-8859-1"%>
 <%@ taglib uri="http://www.springframework.org/tags/form" prefix="form"%>
 <%@ taglib prefix="spring" uri="http://www.springframework.org/tags"%>
@@ -22,7 +23,14 @@
 			check Spring MVC Controller... @RequestMapping("/welcome"))
 		</h3>
 	</div>
+=======
+<jsp:include page="/WEB-INF/jsp/header.jsp" />
+>>>>>>> origin/master
 
+<body ng-controller="mainCtrl">
 
+	
+<h1>{{msj}}</h1>
+<h2><a href="welcome.html">WELCOME</a></h2>
 </body>
-</html>
+<jsp:include page="/WEB-INF/jsp/footer.jsp" />

@@ -1,5 +1,8 @@
 package entities;
 
-public class ClassDayStudent {
+import org.codehaus.jackson.annotate.JsonAutoDetect;
+
+@JsonAutoDetect
+public class ClassDayStudent{
 
 }

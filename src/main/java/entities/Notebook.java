@@ -3,7 +3,9 @@ package entities;
 import java.util.List;
 
 import utils.CourseType;
+import org.codehaus.jackson.annotate.JsonAutoDetect;
 
+@JsonAutoDetect
 public class Notebook {
 
 	private Long oid;

@@ -5,7 +5,9 @@ import java.util.Date;
 import java.util.List;
 
 import utils.Gender;
+import org.codehaus.jackson.annotate.JsonAutoDetect;
 
+@JsonAutoDetect
 public class Student extends Person {
 
 	private Course course;
