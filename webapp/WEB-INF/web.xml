@@ -10,10 +10,11 @@
 <!--     <welcome-file>default.jsp</welcome-file> -->
 <!--   </welcome-file-list> -->
 
-	<servlet>
+	
+      <servlet>
 		<servlet-name>libretaDigital</servlet-name>
 		<servlet-class>
-		org.springframework.web.servlet.DispatcherServlet
+			org.springframework.web.servlet.DispatcherServlet
 		</servlet-class>
 		<load-on-startup>1</load-on-startup>
 	</servlet>
@@ -25,7 +26,7 @@
         <url-pattern>*.html</url-pattern>
 		<url-pattern></url-pattern>
     </servlet-mapping>
-  
+    
   <context-param>
         <param-name>contextConfigLocation</param-name>
         <param-value>/WEB-INF/applicationContext.xml</param-value>
@@ -43,4 +44,6 @@
 	<listener>
         <listener-class>org.springframework.web.context.ContextLoaderListener</listener-class>
     </listener>
+    
+
 </web-app>
