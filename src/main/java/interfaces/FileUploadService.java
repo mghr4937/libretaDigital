@@ -2,6 +2,6 @@ package interfaces;
 
 public interface FileUploadService {
 	
-	void fileUpload();
+	void fileUpload(String tomcatAdress, String fileName, String userName, String selectedUploadType);
 
 }

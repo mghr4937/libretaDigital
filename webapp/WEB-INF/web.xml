@@ -30,6 +30,15 @@
         <param-name>contextConfigLocation</param-name>
         <param-value>/WEB-INF/applicationContext.xml</param-value>
     </context-param>
+    
+    <context-param>
+        <param-name>org.richfaces.fileUpload.maxRequestSize</param-name>
+        <param-value>10000000</param-value>
+    </context-param>
+    <context-param>
+        <param-name>org.richfaces.fileUpload.createTempFiles</param-name>
+        <param-value>true</param-value>
+    </context-param>
 	
 	<listener>
         <listener-class>org.springframework.web.context.ContextLoaderListener</listener-class>

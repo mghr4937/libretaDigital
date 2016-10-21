@@ -10,16 +10,12 @@ import org.jboss.seam.annotations.Name;
 import org.jboss.seam.annotations.Scope;
 import org.jboss.seam.faces.FacesMessages;
 
-import uy.com.geocom.authconsole.ws.FileUploadType;
-import uy.com.geocom.authwebconsole.business.util.LoginUtils;
-import uy.com.geocom.authwebconsole.business.util.TranslateUtils;
+import fileupload.FileUploadType;
+import utils.TranslateUtils;
 
 @Scope(ScopeType.CONVERSATION)
 @Name(value="fileUploadUtils")
 public class FileUploadUtils {
-
-	@In(create = true)
-	private LoginUtils loginUtils;
 	
 	@In
 	FacesMessages facesMessages;
@@ -52,14 +48,6 @@ public class FileUploadUtils {
 		
 		return fileUploadTypeList;
 
-	}
-
-	public LoginUtils getLoginUtils() {
-		return loginUtils;
-	}
-
-	public void setLoginUtils(LoginUtils loginUtils) {
-		this.loginUtils = loginUtils;
 	}
 
 	public FacesMessages getFacesMessages() {

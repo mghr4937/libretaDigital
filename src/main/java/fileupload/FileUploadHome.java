@@ -1,7 +1,6 @@
 package fileupload;
 
 import java.io.File;
-import java.io.IOException;
 import java.io.Serializable;
 import java.util.ArrayList;
 import java.util.Iterator;
@@ -9,14 +8,23 @@ import java.util.List;
 import java.util.MissingResourceException;
 import java.util.ResourceBundle;
 
+import org.jboss.seam.international.StatusMessage.Severity;
+
 import org.apache.log4j.Logger;
-import org.richfaces.application.FacesMessages;
+import org.jboss.seam.annotations.In;
+import org.jboss.seam.annotations.Name;
+import org.jboss.seam.annotations.Scope;
+import org.jboss.seam.ScopeType;
+import org.jboss.seam.faces.FacesMessages;
+
 import org.richfaces.event.UploadEvent;
 import org.richfaces.model.UploadItem;
 
 import interfaces.FileUploadService;
 import fileupload.FileUploadType;
 
+@Scope(ScopeType.SESSION)
+@Name("fileuploadbean")
 public class FileUploadHome implements Serializable{
 	
 	private static final long serialVersionUID = 1L;
@@ -26,10 +34,28 @@ public class FileUploadHome implements Serializable{
 	private static String acceptedTypes = "csv";
 	private boolean useFlash = false;
 	private ArrayList<UploadItem> files;	
+	public ArrayList<UploadItem> getFiles() {
+		return files;
+	}
+
+	public void setFiles(ArrayList<UploadItem> files) {
+		this.files = files;
+	}
+
 	private boolean autoUpload;
 	private int uploadsAvailable;
 	private FileUploadType selectedFileType;
 	
+	private FileUploadService fileUploadService;
+	
+	public FileUploadService getFileUploadService() {
+		return fileUploadService;
+	}
+
+	public void setFileUploadService(FileUploadService fileUploadService) {
+		this.fileUploadService = fileUploadService;
+	}
+
 	@In
 	FacesMessages facesMessages;
 
@@ -49,21 +75,18 @@ public class FileUploadHome implements Serializable{
 		uploadsAvailable--;
 	}
 
-	@End
 	public void clearUploadData() {
 		files = new ArrayList<UploadItem>();
 		this.setUploadsAvailable(UPLOADS_AVAILABLE);
 		autoUpload = false;
 	}
 	
-	@End
 	public void clearPage() {
 		files = new ArrayList<UploadItem>();
 		this.setUploadsAvailable(UPLOADS_AVAILABLE);
 		autoUpload = false;
 	}
 
-	@Begin(join=true)
 	public List<File> getLoadFiles() {
 		List<File> selectedFiles = new ArrayList<File>();
 		if (this.getFiles() != null && this.getFiles().size() > 0) {
@@ -79,69 +102,52 @@ public class FileUploadHome implements Serializable{
 		return selectedFiles;
 	}	
 	
-	@Begin(join=true)
 	public String sendFile() throws Exception {
 
 		String toReturn = "";
-		
-		File newFile = null;
 		
 		try {
 			if (CATALINA_HOME == null || CATALINA_HOME.equals("")) {
 				
 				this.clearUploadData();
-				facesMessages.addFromResourceBundle(Severity.ERROR,"upload_war_catalina_home_not_set");
+				//facesMessages.addFromResourceBundle(Severity.ERROR,"upload_war_catalina_home_not_set");
 				toReturn = "";
 				
 			} else {
 				ResourceBundle rb = ResourceBundle.getBundle("messages_es");
-				String uploadDirectory = CATALINA_HOME.replace("\\", "/") + rb.getString("upload_tomcat_directoy");
 
 				for (Iterator<File> iterator = this.getLoadFiles().iterator(); iterator.hasNext();) {
 					File file = (File) iterator.next();
 					
-					try {
-						if (file.length() > 0) {
+					if (file.length() > 0) {
 
-							newFile = FileUtilities.copyCSVFile(file, uploadDirectory);
-
-							String localPort = rb.getString("service.port");
-							String http_address = rb.getString("http_address");
-							String uploadTomcatDirectory = rb.getString("upload_tomcat_directoy");
-							String tomcat_address = http_address+":"+ localPort + uploadTomcatDirectory;
+						String localPort = rb.getString("service.port");
+						String http_address = rb.getString("http_address");
+						String uploadTomcatDirectory = rb.getString("upload_tomcat_directoy");
+						String tomcat_address = http_address+":"+ localPort + uploadTomcatDirectory;
+					
+						String cleanFileName = cleanFileName(files.get(0).getFileName());
 						
-							String cleanFileName = cleanFileName(files.get(0).getFileName());
-							
-							// Audit
-							FileUploadAuditObject fuao = new FileUploadAuditObject(cleanFileName);
-							auditUtil.auditOperation(AuditUtil.Services.FILE_UPLOAD, loginUtils.getUserVO(), fuao);
-							
-							fileUploadService.fileUpload(tomcat_address + newFile.getName(), cleanFileName, loginUtils.getUserVO().getUsername(), selectedFileType.getValue());
+						String userName = "admin";
+						fileUploadService.fileUpload(tomcat_address + file.getName(), cleanFileName, userName, selectedFileType.getValue());
 
-							toReturn = "sucessfull_upload";
-							facesMessages.addFromResourceBundle(Severity.INFO,"upload_success_message");
-							
-						} else {
-							facesMessages.addFromResourceBundle(Severity.ERROR,"upload_label_error_empy_file");
-							logger.error("Error archivo vacio");
-							toReturn = "";
-						}
+						toReturn = "sucessfull_upload";
+						//facesMessages.addFromResourceBundle(Severity.INFO,"upload_success_message");
 						
-						clearUploadData();
-
-					} catch (IOException e) {
-						facesMessages.addFromResourceBundle(Severity.ERROR,"upload_label_error_empy_file");
+					} else {
+						//facesMessages.addFromResourceBundle(Severity.ERROR,"upload_label_error_empy_file");
 						logger.error("Error archivo vacio");
 						toReturn = "";
-					}		
+					}
+					
+					clearUploadData();		
 				}
 			}
 		} catch(MissingResourceException e) {
-			facesMessages.addFromResourceBundle(Severity.ERROR, "upload.systemerror");
+			//facesMessages.addFromResourceBundle(Severity.ERROR, "upload.systemerror");
 			logger.error("Hubo un error durante la carga de archivo de cupones");
 			throw e;
-		}
-		
+		}	
 		return toReturn;
 	}
 	
@@ -152,13 +158,12 @@ public class FileUploadHome implements Serializable{
 	}
 	
 	
-
 	public FileUploadType[] getFilestype(){
 		return FileUploadType.values();
 	}
 
 	public void warnInvalidFileType(){
-		facesMessages.addFromResourceBundle(Severity.WARN,"upload_label_invalid_format");
+		//facesMessages.addFromResourceBundle(Severity.WARN,"upload_label_invalid_format");
 	}
 
 	public void cleanMessages() {
@@ -171,30 +176,6 @@ public class FileUploadHome implements Serializable{
 
 	public void setFacesMessages(FacesMessages facesMessages) {
 		this.facesMessages = facesMessages;
-	}
-
-	public LoginUtils getLoginUtils() {
-		return loginUtils;
-	}
-
-	public void setLoginUtils(LoginUtils loginUtils) {
-		this.loginUtils = loginUtils;
-	}
-
-	public AuditUtil getAuditUtil() {
-		return auditUtil;
-	}
-
-	public void setAuditUtil(AuditUtil auditUtil) {
-		this.auditUtil = auditUtil;
-	}
-
-	public ArrayList<UploadItem> getFiles() {
-		return files;
-	}
-
-	public void setFiles(ArrayList<UploadItem> files) {
-		this.files = files;
 	}
 
 	public boolean isAutoUpload() {

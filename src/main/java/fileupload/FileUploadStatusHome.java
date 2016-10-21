@@ -14,7 +14,8 @@ import org.jboss.seam.annotations.Name;
 import org.jboss.seam.annotations.Scope;
 import org.jboss.seam.faces.FacesMessages;
 
-import uy.com.geocom.authconsole.Utils;
+import utils.Time;
+
 
 @Scope(ScopeType.CONVERSATION)
 @Name("fileUploadStatus")
@@ -30,7 +31,7 @@ public class FileUploadStatusHome {
 	private boolean showLink;
 	private FileUploadSummary fileUpload;
 	private String http_address;
-	private TimeZone timeZone = Utils.getTimeZome();
+	private TimeZone timeZone = Time.getTimeZome();
 	
 	public List<FileUploadSummary> getUploadsStatus() throws UnknownHostException{
 		return new ArrayList<FileUploadSummary>();

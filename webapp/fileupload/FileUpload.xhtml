@@ -6,15 +6,17 @@
 	xmlns:f="http://java.sun.com/jsf/core"
 	xmlns:h="http://java.sun.com/jsf/html"
 	xmlns:a="http://richfaces.org/a4j"
-	xmlns:rich="http://richfaces.org/rich">
-
+	xmlns:rich="http://richfaces.org/rich"
+	template="../layout/template.xhtml">
+	
+	
 	<ui:define name="body">
 
 		<h:form id="uploadFileForm" styleClass="edit">
 		
 			<rich:panel style="margin-top:15px;">
 				<f:facet name="header">Tipo de carga</f:facet>
-				<h:selectOneMenu value="#{FileUploadHome.selectedFileType}">
+				<h:selectOneMenu value="#{fileuploadbean.selectedFileType}">
 					<s:selectItems value="#{fileUploadUtils.fileUploadTypeList}"
 						var="fut" label="#{fut.value}" itemValue="#{fut}" />
 				</h:selectOneMenu>
@@ -26,10 +28,10 @@
 				<h:panelGrid columns="2">
 					<h:panelGrid columns="1">
 						<rich:fileUpload id="fileUpload"
-							acceptedTypes="#{FileUploadHome.acceptedTypes}"
-							maxFilesQuantity="#{FileUploadHome.uploadsAvailable}"
-							immediateUpload="#{FileUploadHome.autoUpload}"
-							fileUploadListener="#{FileUploadHome.listener}"
+							acceptedTypes="#{fileuploadbean.acceptedTypes}"
+							maxFilesQuantity="#{fileuploadbean.uploadsAvailable}"
+							immediateUpload="#{fileuploadbean.autoUpload}"
+							fileUploadListener="#{fileuploadbean.listener}"
 							addControlLabel="Agregar Archivo"
 							cancelEntryControlLabel="Cancelar"
 							uploadControlLabel="Cargar"
@@ -41,20 +43,20 @@
 							progressLabel="Cargando..."
 							sizeErrorLabel="Tama&#241;o de archivo incorrecto"
 							transferErrorLabel="Error en la carga de archivo"
-							allowFlash="#{FileUploadHome.useFlash}" listHeight="80px"
+							allowFlash="#{fileuploadbean.useFlash}" listHeight="80px"
 							listWidth="475px">
 							<a:support event="onadd"
-								action="#{FileUploadHome.cleanMessages()}" />
+								action="#{fileuploadbean.cleanMessages()}" />
 							<a:support event="ontyperejected"
-								action="#{FileUploadHome.warnInvalidFileType()}" />
+								action="#{fileuploadbean.warnInvalidFileType()}" />
 							<a:support event="onuploadcomplete" reRender="info" />
 							<a:support event="onclean"
-								action="#{FileUploadHome.clearUploadData()}"
+								action="#{fileuploadbean.clearUploadData()}"
 								reRender="fileUpload" />
 						</rich:fileUpload>
 						
 						<h:commandButton id="clrBtt" value="Limpiar contenido"
-							action="#{FileUploadHome.clearPage()}"
+							action="#{fileuploadbean.clearPage()}"
 							reRender="fileUpload" >
 						</h:commandButton>
 					</h:panelGrid>
@@ -65,12 +67,12 @@
 								<h:outputText value="Informaci&#243;n de archivos" />
 							</f:facet>
 							<h:outputText value="No hay archivos cargados."
-								rendered="#{FileUploadHome.size==0}" />
+								rendered="#{fileuploadbean.size==0}" />
 							<br></br>
 							<h:outputText
-								value="#{messages.upload_label_component} #{FileUploadHome.acceptedTypes}"
-								rendered="#{FileUploadHome.size==0}" />
-							<rich:dataGrid columns="1" value="#{FileUploadHome.files}"
+								value="#{messages.upload_label_component} #{fileuploadbean.acceptedTypes}"
+								rendered="#{fileuploadbean.size==0}" />
+							<rich:dataGrid columns="1" value="#{fileuploadbean.files}"
 								var="file" rowKeyVar="row" width="200">
 								<h:panelGrid columns="2">
 									<h:outputText value="Nombre:" />
@@ -83,16 +85,16 @@
 							<br />
 							<div align="center" class="actionButtons">
 								<h:commandButton id="cmdAddCouponFile"
-									action="#{FileUploadHome.sendFile()}" value="Ejecutar carga"
+									action="#{fileuploadbean.sendFile()}" value="Ejecutar carga"
 									onclick="javascript:if(!confirm('Esta seguro que quiere realizar este tipo de carga?'))return false; else Richfaces.showModalPanel('loadingModal');"
 									oncomplete="Richfaces.hideModalPanel('loadingModal');"  
-									rendered="#{FileUploadHome.size>0}" />
+									rendered="#{fileuploadbean.size>0}" />
 
 								<h:commandButton id="cmdCleanFile"
-									action="#{FileUploadHome.clearUploadData()}"
+									action="#{fileuploadbean.clearUploadData()}"
 									reRender="info, fileUpload"
 									value="#{messages.clear_upload_file}"
-									rendered="#{FileUploadHome.size>0}" immediate="true"/>
+									rendered="#{fileuploadbean.size>0}" immediate="true"/>
 							</div>
 						</rich:panel>
 					</h:panelGroup>
