@@ -34,6 +34,7 @@ public class FileUploadHome implements Serializable{
 	private static String acceptedTypes = "csv";
 	private boolean useFlash = false;
 	private ArrayList<UploadItem> files;	
+	
 	public ArrayList<UploadItem> getFiles() {
 		return files;
 	}
