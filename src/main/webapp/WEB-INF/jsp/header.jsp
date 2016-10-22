@@ -15,6 +15,6 @@
 %>
 <title><%=pageTitle%></title>
 <link rel="stylesheet" href="bower_components/bootstrap/dist/css/bootstrap.min.css">
-
+<link rel="stylesheet" href="bower_components/angular-aside-menu/dist/aside-menu.css">
 
 </head>

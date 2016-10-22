@@ -135,6 +135,45 @@
 			<artifactId>violetRays</artifactId>
 			<version>${richfaces.version}</version>
 		</dependency>
+	
+	<dependency>  
+      <groupId>org.richfaces.ui</groupId>  
+      <artifactId>richfaces-ui</artifactId>  
+      <version>${richfaces.version}</version>  
+    </dependency>
+    
+    <dependency>  
+      <groupId>org.richfaces.framework</groupId>  
+      <artifactId>richfaces-impl-jsf2</artifactId>  
+      <version>3.3.3.Final</version>  
+    </dependency>
+    
+    <dependency>  
+      <groupId>org.richfaces.samples</groupId>  
+      <artifactId>laguna</artifactId>  
+      <version>${richfaces.version}</version>  
+    </dependency>  
+    <dependency>  
+      <groupId>org.richfaces.samples</groupId>  
+      <artifactId>glassX</artifactId>  
+      <version>${richfaces.version}</version>  
+    </dependency>  
+    <dependency>  
+      <groupId>org.richfaces.samples</groupId>  
+      <artifactId>darkX</artifactId>  
+      <version>${richfaces.version}</version>  
+    </dependency>
+    
+    <dependency>  
+            <groupId>org.richfaces.samples</groupId>  
+            <artifactId>themes</artifactId>  
+            <version>${richfaces.version}</version>  
+        </dependency>      
+        <dependency>  
+            <groupId>org.richfaces.samples</groupId>  
+            <artifactId>violetRays</artifactId>  
+            <version>${richfaces.version}</version>  
+        </dependency>      
 
 		<dependency>
 			<groupId>org.apache.tomcat</groupId>
