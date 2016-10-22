@@ -17,6 +17,11 @@ public abstract class Person {
 	
 	public Person(){}
 	
+	public Person(String name, String lastName){
+		this.name=name;
+		this.lastName=lastName;
+	}
+	
 	public Person(String name, String lastName, Date birthDate, Image photo, Gender gender, String email){
 		this.name = name;
 		this.lastName = lastName;

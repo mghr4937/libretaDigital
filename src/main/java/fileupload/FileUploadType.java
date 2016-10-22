@@ -2,10 +2,10 @@ package fileupload;
 
 public enum FileUploadType {
 
-	GROUPS("Clientes"), 
-	PROFESSORS("Pagos"),
+	PROFESSORS("Profesores"),
 	STUDENTS("Estudiantes"),
-	PROGRAM("Programa");
+	GROUPS("Grupos"), 
+	PROGRAM("Programas");
 	
 	private final String value;
 

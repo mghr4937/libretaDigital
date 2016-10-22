@@ -15,6 +15,10 @@ public class Professor extends Person {
 	private Grade grade;
 	private Date employeeSince;
 	private List<Subject> subjectsList;
+	
+	public Professor(String name, String lastName){
+		super(name, lastName);
+	}
 		
 	public Professor(String password, String name, String lastName, Date birthDate, Gender gender, String email, Date employeeSince){
 		super(name, lastName, birthDate, gender, email);
