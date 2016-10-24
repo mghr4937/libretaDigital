@@ -8,7 +8,7 @@
 	<version>1.0.0.0-SNAPSHOT</version>
 	<name>${project.artifactId} : ${project.version}</name>
 	<packaging>war</packaging>
-
+	
 	<properties>
 		<spring.version>4.2.5.RELEASE</spring.version>
 		<spring.integration.version>2.0.1.RELEASE</spring.integration.version>
@@ -95,6 +95,13 @@
 			<groupId>commons-logging</groupId>
 			<artifactId>commons-logging</artifactId>
 			<version>1.2</version>
+			<scope>provided</scope>
+		</dependency>
+
+		<dependency>
+			<groupId>org.slf4j</groupId>
+			<artifactId>jcl-over-slf4j</artifactId>
+			<version>1.7.21</version>
 		</dependency>
 
 		<dependency>
@@ -135,45 +142,45 @@
 			<artifactId>violetRays</artifactId>
 			<version>${richfaces.version}</version>
 		</dependency>
-	
-	<dependency>  
-      <groupId>org.richfaces.ui</groupId>  
-      <artifactId>richfaces-ui</artifactId>  
-      <version>${richfaces.version}</version>  
-    </dependency>
-    
-    <dependency>  
-      <groupId>org.richfaces.framework</groupId>  
-      <artifactId>richfaces-impl-jsf2</artifactId>  
-      <version>3.3.3.Final</version>  
-    </dependency>
-    
-    <dependency>  
-      <groupId>org.richfaces.samples</groupId>  
-      <artifactId>laguna</artifactId>  
-      <version>${richfaces.version}</version>  
-    </dependency>  
-    <dependency>  
-      <groupId>org.richfaces.samples</groupId>  
-      <artifactId>glassX</artifactId>  
-      <version>${richfaces.version}</version>  
-    </dependency>  
-    <dependency>  
-      <groupId>org.richfaces.samples</groupId>  
-      <artifactId>darkX</artifactId>  
-      <version>${richfaces.version}</version>  
-    </dependency>
-    
-    <dependency>  
-            <groupId>org.richfaces.samples</groupId>  
-            <artifactId>themes</artifactId>  
-            <version>${richfaces.version}</version>  
-        </dependency>      
-        <dependency>  
-            <groupId>org.richfaces.samples</groupId>  
-            <artifactId>violetRays</artifactId>  
-            <version>${richfaces.version}</version>  
-        </dependency>      
+
+		<dependency>
+			<groupId>org.richfaces.ui</groupId>
+			<artifactId>richfaces-ui</artifactId>
+			<version>${richfaces.version}</version>
+		</dependency>
+
+		<dependency>
+			<groupId>org.richfaces.framework</groupId>
+			<artifactId>richfaces-impl-jsf2</artifactId>
+			<version>3.3.3.Final</version>
+		</dependency>
+
+		<dependency>
+			<groupId>org.richfaces.samples</groupId>
+			<artifactId>laguna</artifactId>
+			<version>${richfaces.version}</version>
+		</dependency>
+		<dependency>
+			<groupId>org.richfaces.samples</groupId>
+			<artifactId>glassX</artifactId>
+			<version>${richfaces.version}</version>
+		</dependency>
+		<dependency>
+			<groupId>org.richfaces.samples</groupId>
+			<artifactId>darkX</artifactId>
+			<version>${richfaces.version}</version>
+		</dependency>
+
+		<dependency>
+			<groupId>org.richfaces.samples</groupId>
+			<artifactId>themes</artifactId>
+			<version>${richfaces.version}</version>
+		</dependency>
+		<dependency>
+			<groupId>org.richfaces.samples</groupId>
+			<artifactId>violetRays</artifactId>
+			<version>${richfaces.version}</version>
+		</dependency>
 
 		<dependency>
 			<groupId>org.apache.tomcat</groupId>
@@ -319,6 +326,13 @@
 			<scope>provided</scope>
 		</dependency>
 
+	<dependency>
+		<groupId>javax.servlet.jsp</groupId>
+		<artifactId>jsp-api</artifactId>
+		<version>2.1</version>
+		<scope>provided</scope>
+	</dependency>
+
 		<dependency>
 			<groupId>org.springframework</groupId>
 			<artifactId>spring-jdbc</artifactId>
@@ -417,6 +431,7 @@
 			<groupId>log4j</groupId>
 			<artifactId>log4j</artifactId>
 			<version>1.2.16</version>
+			<scope>provided</scope>
 		</dependency>
 
 		<dependency>
@@ -514,6 +529,7 @@
 			<groupId>javax.servlet</groupId>
 			<artifactId>jstl</artifactId>
 			<version>1.2</version>
+			<scope>provided</scope>
 		</dependency>
 
 		<dependency>
@@ -542,6 +558,7 @@
 
 
 	<build>
+
 		<finalName>libretaDigital</finalName>
 		<plugins>
 			<plugin>

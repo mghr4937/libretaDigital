@@ -1,6 +1,13 @@
-h2{
-	color:#dd7127;
+
+
+/* FILE UPLOAD ANGULAR */
+.my-drop-zone {
+	border: dotted 3px lightgray;
 }
-h4{
-	color:#DD2727;
+.nv-file-over {
+	border: dotted 3px red;
+} /* Default class applied to drop zones on over */
+.another-file-over-class {
+	border: dotted 3px green;
 }
+

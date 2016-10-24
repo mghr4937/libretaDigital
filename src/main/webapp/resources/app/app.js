@@ -1,5 +1,5 @@
 //var app = angular.module("app", []);
-var app = angular.module('app', ['ui.bootstrap', 'smart-table', 'asideModule'])
+var app = angular.module('app', ['ui.bootstrap', 'smart-table', 'asideModule', 'angularFileUpload'])
 
 .filter('capitalize', function() {
     return function(input, all) {
