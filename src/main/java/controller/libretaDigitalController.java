@@ -15,7 +15,7 @@ import entities.ClassDayStudent;
  */
 
 @Controller
-public class libretaDigitalController {
+public class LibretaDigitalController {
 	
 	@RequestMapping("/")
 	public ModelAndView index() { 

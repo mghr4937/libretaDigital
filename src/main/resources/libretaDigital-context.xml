@@ -26,7 +26,7 @@
 		<property name="professorDAO" ref="professorDAO"/>
 	</bean>
 	
-	<util:list id="libretaDigital.mapping.resources">
+	<util:list id="libretadigital.mapping.resources">
 		<value>hbm/ClassDayProfessor.hbm.xml</value>
 		<value>hbm/ClassDayStudent.hbm.xml</value>
 		<value>hbm/Course.hbm.xml</value>
