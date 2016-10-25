@@ -1,4 +1,4 @@
-app.controller('fileUploadCtrl', ['$scope', '$http', function($scope, $http, FileUploader) {
+app.controller('fileUploadCtrl', ['$scope', '$http','FileUploader', function($scope, $http, FileUploader) {
 	$scope.uploader = new FileUploader();
 	
 	var uploader = $scope.uploader = new FileUploader({

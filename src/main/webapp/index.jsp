@@ -6,7 +6,7 @@
 <!-- right menu -->
 <aside-menu id="right-menu" side="left" width="400px" is-backdrop="true" push-content="false">
     <ul class="list-group">
-        <li class="list-group-item"><a href="FileUpload.html">Carga de Datos</a></li>        
+        <li class="list-group-item"><a href="fileUpload.jsp">Carga de Datos</a></li>        
         <li class="list-group-item">Opcion 2</li>
         <li class="list-group-item">Opcion 3</li>
         <li class="list-group-item">Opcion 3</li>
@@ -26,4 +26,21 @@
     </div>
 </aside-menu-content>
 </body>
-<jsp:include page="/WEB-INF/jsp/footer.jsp" />
+
+<script src="bower_components/angular/angular.js"></script>
+<script src="bower_components/angular-bootstrap/ui-bootstrap.min.js"></script>
+<script src="bower_components/angular-bootstrap/ui-bootstrap-tpls.js"></script>
+<script src="bower_components/angular-smart-table/dist/smart-table.min.js"></script>
+<script src="bower_components/angular-file-upload/dist/angular-file-upload.min.js"></script>
+<script src="bower_components/jquery/dist/jquery.js"></script>
+<script src="bower_components/angular-aside-menu/dist/aside-menu.js"></script>
+<script src="resources/app/app.js"></script>
+<script src="resources/app/controllers/mainController.js"></script>
+
+
+<footer>
+
+</footer>
+
+
+</html>

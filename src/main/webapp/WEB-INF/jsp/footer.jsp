@@ -7,7 +7,7 @@
 <script src="bower_components/angular-aside-menu/dist/aside-menu.js"></script>
 <script src="resources/app/app.js"></script>
 <script src="resources/app/controllers/mainController.js"></script>
-<script src="resources/app/controllers/welcomeController.js"></script>
+
 
 <footer>
 

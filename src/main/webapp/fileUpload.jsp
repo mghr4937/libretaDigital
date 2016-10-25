@@ -1,22 +1,22 @@
 <jsp:include page="/WEB-INF/jsp/header.jsp" />
 
 
-<body ng-controller="AppController" nv-file-drop="" uploader="uploader" filters="queueLimit, customFilter">
+<body ng-controller="fileUploadCtrl" nv-file-drop="" uploader="uploader" filters="queueLimit, customFilter">
 
         <div class="container">
 
             <div class="navbar navbar-default">
                 <div class="navbar-header">
-                    <a class="navbar-brand" href="https://github.com/nervgh/angular-file-upload">Angular File Upload</a>
+                    <a class="navbar-brand" href="https://github.com/nervgh/angular-file-upload">Libreta Digital</a>
                 </div>
                 <div class="navbar-collapse collapse">
                     <ul class="nav navbar-nav">
                         <li class="active dropdown">
-                            <a href="#" class="dropdown-toggle" data-toggle="dropdown">Demos <b class="caret"></b></a>
+                            <a href="#" class="dropdown-toggle" data-toggle="dropdown">Carga de Datos<b class="caret"></b></a>
                             <ul class="dropdown-menu">
-                                <li class="active"><a href="#">Simple example</a></li>
-                                <li><a href="../image-preview">Uploads only images (with canvas preview)</a></li>
-                                <li><a href="../without-bootstrap">Without bootstrap example</a></li>
+                                <li class="active"><a href="#">Carga Masiva</a></li>
+                                <li><a href="">Carga 1</a></li>
+                                <li><a href="">Carga 1</a></li>
                             </ul>
                         </li>
                         <li><a href="https://github.com/nervgh/angular-file-upload">View on Github</a></li>
@@ -123,8 +123,25 @@
 
     </body>
 
+
+<script src="resources/js/fileUploader/console-sham.js"></script>
+<script src="bower_components/angular/angular.js"></script>
+<script src="bower_components/angular-bootstrap/ui-bootstrap.min.js"></script>
+<script src="bower_components/angular-bootstrap/ui-bootstrap-tpls.js"></script>
+<script src="bower_components/angular-smart-table/dist/smart-table.min.js"></script>
+<script src="bower_components/angular-file-upload/dist/angular-file-upload.min.js"></script>
+<script src="bower_components/jquery/dist/jquery.js"></script>
+<script src="bower_components/angular-aside-menu/dist/aside-menu.js"></script>
+<script src="resources/app/app.js"></script>
+<script src="resources/app/controllers/fileUploadController.js"></script>
 <script src="http://nervgh.github.io/js/es5-shim.min.js"></script>
 <script src="http://nervgh.github.io/js/es5-sham.min.js"></script>
-<script src="resources/app/controllers/fileUploadController.js"></script>
 
-<jsp:include page="/WEB-INF/jsp/footer.jsp" />
+<footer>
+
+</footer>
+
+
+</html>
+
+
